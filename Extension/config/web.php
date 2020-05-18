@@ -43,6 +43,13 @@ $config = [
             ],
         ],
         'db' => $db,
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-basic-app'
+                ],
+            ],
+        ],
     /*
       'urlManager' => [
       'enablePrettyUrl' => true,
@@ -51,15 +58,6 @@ $config = [
       ],
       ],
      */
-    ],
-    'components' => [
-        'view' => [
-            'theme' => [
-                'pathMap' => [
-                    '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
-                ],
-            ],
-        ],
     ],
     'params' => $params,
 ];
