@@ -1,3 +1,11 @@
+<?php
+
+/** @var \yii\web\View $this */
+/** @var string $directoryAsset */
+/* @var $model app\models\Pextension */
+
+?>
+
 <aside class="main-sidebar">
 
     <section class="sidebar">
@@ -30,10 +38,11 @@
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
-                    ['label' => 'Menu Yii2-Prueba', 'options' => ['class' => 'header']],
-                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
-                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
-                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => 'Menu Extensión', 'options' => ['class' => 'header']],
+                    isset($this->params['menu']) ? $this->params['menu'] : [],
+                    //['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
+                    //['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
+                    //['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [
                         'label' => 'Some tools',
                         'icon' => 'share',

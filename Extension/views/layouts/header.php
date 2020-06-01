@@ -1,13 +1,13 @@
 <?php
-use yii\helpers\Html;
+/** @var \yii\web\View $this */
 
-/* @var $this \yii\web\View */
-/* @var $content string */
+/** @var string $directoryAsset */
+use yii\helpers\Html;
 ?>
 
 <header class="main-header">
 
-    <?= Html::a('<span class="logo-mini">APP</span><span class="logo-lg">' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
+<?= Html::a('<span class="logo-mini">APP</span><span class="logo-lg">' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
 
     <nav class="navbar navbar-static-top" role="navigation">
 
@@ -18,6 +18,19 @@ use yii\helpers\Html;
         <div class="navbar-custom-menu">
 
             <ul class="nav navbar-nav">
+
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/" class="nav-link">Inicio</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/convocatoria/index" class="nav-link">Convocatoria</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/pextension/index" class="nav-link">Proyectos</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/site/contact" class="nav-link">Contacto</a>
+                </li>
 
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
@@ -261,11 +274,13 @@ use yii\helpers\Html;
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <?= Html::a(
-                                    'Sign out',
-                                    ['/site/logout'],
-                                    ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
-                                ) ?>
+                                <?=
+                                Html::a(
+                                        'Sign out',
+                                        ['/site/logout'],
+                                        ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
+                                )
+                                ?>
                             </div>
                         </li>
                     </ul>
