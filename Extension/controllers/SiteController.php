@@ -63,8 +63,12 @@ class SiteController extends Controller
     {
         $searchModel = new \app\models\PextensionSearch();
         $total = $searchModel ->searchResumen(null);
+        
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index',[
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
             'total' => $total, 
         ]);
     }

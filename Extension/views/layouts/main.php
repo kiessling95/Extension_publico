@@ -57,6 +57,20 @@ if (Yii::$app->controller->action->id === 'login') {
         ) ?>
 
     </div>
+        
+    
+        
+    <footer class="footer">
+      
+      <div class="container">
+        <p class="pull-left">Licencia GPL-3.0  <span class="copyleft"> &copy;</span> Facultad de Informática - Universidad Nacional del Comahue <?= date('Y') ?></p>
+
+        <p class="pull-right"><?= Yii::powered() ?></p>
+      </div>
+      
+      
+
+    </footer>
 
     <?php $this->endBody() ?>
     </body>
