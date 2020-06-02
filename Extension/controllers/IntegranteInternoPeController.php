@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\IntegranteExternoPe;
-use app\models\IntegranteExternoPeSearch;
+use app\models\IntegranteInternoPe;
+use app\models\IntegranteInternoPeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * IntegranteExternoPeController implements the CRUD actions for IntegranteExternoPe model.
+ * IntegranteInternoPeController implements the CRUD actions for IntegranteInternoPe model.
  */
-class IntegranteExternoPeController extends Controller
+class IntegranteInternoPeController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class IntegranteExternoPeController extends Controller
     }
 
     /**
-     * Lists all IntegranteExternoPe models.
+     * Lists all IntegranteInternoPe models.
      * @return mixed
      */
     public function actionIndex($id)
     {
-        $searchModel = new IntegranteExternoPeSearch();
+        $searchModel = new IntegranteInternoPeSearch();
         $searchModel->id_pext = $id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         
@@ -51,32 +51,31 @@ class IntegranteExternoPeController extends Controller
     }
 
     /**
-     * Displays a single IntegranteExternoPe model.
-     * @param string $tipo_docum
-     * @param integer $nro_docum
+     * Displays a single IntegranteInternoPe model.
+     * @param integer $id_designacion
      * @param integer $id_pext
      * @param string $desde
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($tipo_docum, $nro_docum, $id_pext, $desde)
+    public function actionView($id_designacion, $id_pext, $desde)
     {
         return $this->render('view', [
-            'model' => $this->findModel($tipo_docum, $nro_docum, $id_pext, $desde),
+            'model' => $this->findModel($id_designacion, $id_pext, $desde),
         ]);
     }
 
     /**
-     * Creates a new IntegranteExternoPe model.
+     * Creates a new IntegranteInternoPe model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new IntegranteExternoPe();
+        $model = new IntegranteInternoPe();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'tipo_docum' => $model->tipo_docum, 'nro_docum' => $model->nro_docum, 'id_pext' => $model->id_pext, 'desde' => $model->desde]);
+            return $this->redirect(['view', 'id_designacion' => $model->id_designacion, 'id_pext' => $model->id_pext, 'desde' => $model->desde]);
         }
 
         return $this->render('create', [
@@ -85,21 +84,20 @@ class IntegranteExternoPeController extends Controller
     }
 
     /**
-     * Updates an existing IntegranteExternoPe model.
+     * Updates an existing IntegranteInternoPe model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $tipo_docum
-     * @param integer $nro_docum
+     * @param integer $id_designacion
      * @param integer $id_pext
      * @param string $desde
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($tipo_docum, $nro_docum, $id_pext, $desde)
+    public function actionUpdate($id_designacion, $id_pext, $desde)
     {
-        $model = $this->findModel($tipo_docum, $nro_docum, $id_pext, $desde);
+        $model = $this->findModel($id_designacion, $id_pext, $desde);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'tipo_docum' => $model->tipo_docum, 'nro_docum' => $model->nro_docum, 'id_pext' => $model->id_pext, 'desde' => $model->desde]);
+            return $this->redirect(['view', 'id_designacion' => $model->id_designacion, 'id_pext' => $model->id_pext, 'desde' => $model->desde]);
         }
 
         return $this->render('update', [
@@ -108,35 +106,33 @@ class IntegranteExternoPeController extends Controller
     }
 
     /**
-     * Deletes an existing IntegranteExternoPe model.
+     * Deletes an existing IntegranteInternoPe model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $tipo_docum
-     * @param integer $nro_docum
+     * @param integer $id_designacion
      * @param integer $id_pext
      * @param string $desde
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($tipo_docum, $nro_docum, $id_pext, $desde)
+    public function actionDelete($id_designacion, $id_pext, $desde)
     {
-        $this->findModel($tipo_docum, $nro_docum, $id_pext, $desde)->delete();
+        $this->findModel($id_designacion, $id_pext, $desde)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the IntegranteExternoPe model based on its primary key value.
+     * Finds the IntegranteInternoPe model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $tipo_docum
-     * @param integer $nro_docum
+     * @param integer $id_designacion
      * @param integer $id_pext
      * @param string $desde
-     * @return IntegranteExternoPe the loaded model
+     * @return IntegranteInternoPe the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($tipo_docum, $nro_docum, $id_pext, $desde)
+    protected function findModel($id_designacion, $id_pext, $desde)
     {
-        if (($model = IntegranteExternoPe::findOne(['tipo_docum' => $tipo_docum, 'nro_docum' => $nro_docum, 'id_pext' => $id_pext, 'desde' => $desde])) !== null) {
+        if (($model = IntegranteInternoPe::findOne(['id_designacion' => $id_designacion, 'id_pext' => $id_pext, 'desde' => $desde])) !== null) {
             return $model;
         }
 

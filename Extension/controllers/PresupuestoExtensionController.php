@@ -33,14 +33,20 @@ class PresupuestoExtensionController extends Controller
      * Lists all PresupuestoExtension models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($id)
     {
         $searchModel = new PresupuestoExtensionSearch();
+        $searchModel->id_pext = $id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        if (($model = \app\models\Pextension::findOne($id)) == null) {
+            throw new NotFoundHttpException(Yii::t('app', 'El Proyecto no existe.'));
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'model' => $model,
         ]);
     }
 

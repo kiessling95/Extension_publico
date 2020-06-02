@@ -61,7 +61,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new \app\models\PextensionSearch();
+        $total = $searchModel ->searchResumen(null);
+
+        return $this->render('index',[
+            'total' => $total, 
+        ]);
     }
 
     /**

@@ -1,8 +1,9 @@
 <?php
-
+use yii\helpers\Url;
 /** @var \yii\web\View $this */
 /** @var string $directoryAsset */
 /* @var $model app\models\Pextension */
+
 
 ?>
 
@@ -13,12 +14,15 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                <?php
+                 echo("<img src='".Url::to(['img/logo.png'])."' class='user-image' />");
+                        ?>
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>Universidad Nacional</p>
+                <p1>   del Comahue</p1>
 
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <!--<a href="#"><i class="fa fa-circle text-success"></i> Online</a>-->
             </div>
         </div>
 

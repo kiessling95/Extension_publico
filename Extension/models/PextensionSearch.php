@@ -90,4 +90,12 @@ class PextensionSearch extends Pextension
 
         return $dataProvider;
     }
+    
+
+    
+    public function searchResumen($param) {
+        $query = PextensionSearch::find();
+        $resultado=$query->asArray()->all();
+        return $resultado;
+    }
 }
