@@ -43,7 +43,7 @@ $this->title = 'Proyectos de Extensión';
         <span class="title-list">
             <h1>Listado Proyecto de Extensión </h1>
         </span>
-
+        <!-- listview -->
         <?=
         GridView::widget([
             'dataProvider' => $dataProvider,

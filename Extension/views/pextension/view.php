@@ -5,6 +5,7 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Pextension */
+/* @var $ejes app\models\EjeTematicoConv */
 
 $this->title = $model->denominacion;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pextensions'), 'url' => ['index']];
@@ -40,29 +41,35 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             //'id_pext',
             'denominacion',
+            [
+                'label' => 'Estado',
+                'value' => $model->estado->descripcion,
+            ],
+            [
+                'label' => 'Convocatoria',
+                'value' => $model->bases->bases_titulo,
+            ],
             'uni_acad',
+            'departamento',
+            'area',
+            'fec_carga',
             'fec_desde',
             'fec_hasta',
-            'expediente',
+            //'eje_tematico',
             'duracion',
             'palabras_clave',
-            'objetivo',
-            'id_estado',
-            'financiacion:boolean',
-            'monto',
             'descripcion_situacion',
             'caracterizacion_poblacion',
             'localizacion_geo',
-            'antecedente_participacion',
-            'importancia_necesidad',
-            'id_bases',
-            'responsable_carga',
-            'departamento',
-            'area',
+            'objetivo',
             'impacto',
-            //'eje_tematico',
+            'monto',
             'ord_priori',
-            'fec_carga',
+            'responsable_carga',
+            //'expediente',
+            //'financiacion:boolean',
+            //'antecedente_participacion',
+            //'importancia_necesidad',
         ],
     ])
     ?>

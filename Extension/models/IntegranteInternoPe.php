@@ -59,14 +59,14 @@ class IntegranteInternoPe extends \yii\db\ActiveRecord
         return [
             'id_designacion' => Yii::t('app', 'Id Designacion'),
             'id_pext' => Yii::t('app', 'Id Pext'),
-            'funcion_p' => Yii::t('app', 'Funcion P'),
+            'funcion_p' => Yii::t('app', 'Funcion dentro del Proyecto'),
             'carga_horaria' => Yii::t('app', 'Carga Horaria'),
-            'ua' => Yii::t('app', 'Ua'),
-            'rescd' => Yii::t('app', 'Rescd'),
+            'ua' => Yii::t('app', 'Unidad Academica'),
+            'rescd' => Yii::t('app', 'Resolusción cd'),
             'ad_honorem' => Yii::t('app', 'Ad Honorem'),
             'tipo' => Yii::t('app', 'Tipo'),
-            'desde' => Yii::t('app', 'Desde'),
-            'hasta' => Yii::t('app', 'Hasta'),
+            'desde' => Yii::t('app', 'Fecha inicio'),
+            'hasta' => Yii::t('app', 'fecha Fin'),
             'cv' => Yii::t('app', 'Cv'),
         ];
     }

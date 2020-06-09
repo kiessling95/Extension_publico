@@ -34,16 +34,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_designacion',
-            'id_pext',
+            //'id_designacion',
+            [
+                'attribute' => 'id_designacion',
+                'value' => utf8_encode( 'desigancion')
+            ],
+            //'id_pext',
             'funcion_p',
-            'carga_horaria',
+            //'carga_horaria',
             'ua',
             //'rescd',
             //'ad_honorem',
             //'tipo',
-            //'desde',
-            //'hasta',
+            'desde',
+            'hasta',
             //'cv',
 
             ['class' => 'yii\grid\ActionColumn'],

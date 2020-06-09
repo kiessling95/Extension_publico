@@ -7,12 +7,12 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\PextensionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Pextensions');
+$this->title = Yii::t('app', 'Proyectos de Extensión');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="pextension-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode("Listado Proyectos de Extensión") ?></h1>
 
     <!--<p>
         <?= Html::a(Yii::t('app', 'Create Pextension'), ['create'], ['class' => 'btn btn-success']) ?>
@@ -26,7 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_pext',
+            //'id_pext',
+            [
+                'attribute' => 'id_bases',
+                'value' => utf8_encode( 'bases.bases_titulo')
+            ],
             'denominacion',
             'uni_acad',
             'fec_desde',

@@ -13,7 +13,6 @@ $this->params["menu"] = [
     'items' => [
         ['label' => 'Integrantes',
             'icon' => 'fas fa-folder-open',
-            'url' => ['/in'],
             'items' => [
                 ['label' => 'Integrantes Docentes',
                     'icon' => 'fas fa-file-alt',

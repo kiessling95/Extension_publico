@@ -28,9 +28,9 @@ use yii\helpers\Html;
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="/pextension/index" class="nav-link">Proyectos</a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
+                <!--<li class="nav-item d-none d-sm-inline-block">
                     <a href="/site/contact" class="nav-link">Contacto</a>
-                </li>
+                </li>-->
 
                 <!-- Messages: style can be found in dropdown.less-->
                 <!--<li class="dropdown messages-menu">
