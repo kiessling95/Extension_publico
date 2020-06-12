@@ -86,4 +86,10 @@ class ConvocatoriaSearch extends BasesConvocatoria
 
         return $dataProvider;
     }
+    
+    public function searchResumen($param) {
+        $query = ConvocatoriaSearch::find();
+        $resultado=$query->asArray()->all();
+        return $resultado;
+    }
 }

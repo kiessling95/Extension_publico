@@ -41,7 +41,7 @@ class RubroPresupExtension extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_rubro_extension' => Yii::t('app', 'Id Rubro Extension'),
+            'id_rubro_extension' => Yii::t('app', 'Rubro'),
             'tipo' => Yii::t('app', 'Tipo'),
         ];
     }

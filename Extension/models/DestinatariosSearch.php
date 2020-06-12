@@ -74,4 +74,10 @@ class DestinatariosSearch extends Destinatarios
 
         return $dataProvider;
     }
+    
+    public function searchResumen($param) {
+        $query = DestinatariosSearch::find();
+        $resultado=$query->asArray()->all();
+        return $resultado;
+    }
 }

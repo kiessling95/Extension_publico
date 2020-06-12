@@ -11,6 +11,7 @@ use app\models\Pextension;
  */
 class PextensionSearch extends Pextension
 {
+    public $convocatoria;
     /**
      * {@inheritdoc}
      */
@@ -18,7 +19,7 @@ class PextensionSearch extends Pextension
     {
         return [
             [['id_pext', 'duracion', 'id_bases', 'eje_tematico', 'ord_priori'], 'integer'],
-            [['denominacion', 'uni_acad', 'fec_desde', 'fec_hasta', 'expediente', 'palabras_clave', 'objetivo', 'id_estado', 'descripcion_situacion', 'caracterizacion_poblacion', 'localizacion_geo', 'antecedente_participacion', 'importancia_necesidad', 'responsable_carga', 'departamento', 'area', 'impacto', 'fec_carga'], 'safe'],
+            [['denominacion', 'uni_acad', 'fec_desde', 'fec_hasta', 'expediente', 'palabras_clave', 'objetivo', 'id_estado', 'descripcion_situacion', 'caracterizacion_poblacion', 'localizacion_geo', 'antecedente_participacion', 'importancia_necesidad', 'responsable_carga', 'departamento', 'area', 'impacto', 'fec_carga','convocatoria'], 'safe'],
             [['financiacion'], 'boolean'],
             [['monto'], 'number'],
         ];
@@ -87,6 +88,7 @@ class PextensionSearch extends Pextension
             ->andFilterWhere(['ilike', 'departamento', $this->departamento])
             ->andFilterWhere(['ilike', 'area', $this->area])
             ->andFilterWhere(['ilike', 'impacto', $this->impacto]);
+            //->andFilterWhere(['ilike', 'bases', $this->convocatoria]);
 
         return $dataProvider;
     }

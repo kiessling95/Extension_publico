@@ -64,13 +64,13 @@ class IntegranteExternoPe extends \yii\db\ActiveRecord
             'tipo_docum' => Yii::t('app', 'Tipo Docum'),
             'nro_docum' => Yii::t('app', 'Nro Docum'),
             'id_pext' => Yii::t('app', 'Id Pext'),
-            'funcion_p' => Yii::t('app', 'Funcion P'),
+            'funcion_p' => Yii::t('app', 'Función'),
             'carga_horaria' => Yii::t('app', 'Carga Horaria'),
-            'desde' => Yii::t('app', 'Desde'),
-            'hasta' => Yii::t('app', 'Hasta'),
-            'rescd' => Yii::t('app', 'Rescd'),
+            'desde' => Yii::t('app', 'Fecha Inicio'),
+            'hasta' => Yii::t('app', 'Fecha Fin'),
+            'rescd' => Yii::t('app', 'Resolución cd'),
             'ad_honorem' => Yii::t('app', 'Ad Honorem'),
-            'tipo' => Yii::t('app', 'Tipo'),
+            'tipo' => Yii::t('app', 'Claustro'),
             'cv' => Yii::t('app', 'Cv'),
         ];
     }
@@ -113,5 +113,25 @@ class IntegranteExternoPe extends \yii\db\ActiveRecord
     public function getSeguimientoUas()
     {
         return $this->hasMany(SeguimientoUa::className(), ['id_pext' => 'id_pext', 'tipo_docum' => 'tipo_docum', 'nro_docum' => 'nro_docum', 'desde' => 'desde']);
+    }
+    
+    /**
+     * Gets query for [[Persona]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPersona()
+    {
+        return $this->hasOne(Persona::className(), ['tipo_docum' => 'tipo_docum', 'nro_docum' => 'nro_docum']);
+    }
+    
+    /**
+     * Gets query for [[Claustro]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getClaustro()
+    {
+        return $this->hasOne(FuncionExtension::className(), ['id_extension' => 'tipo']);
     }
 }

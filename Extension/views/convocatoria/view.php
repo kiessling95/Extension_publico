@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\BasesConvocatoria */
 
-$this->title = $model->id_bases;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Bases Convocatorias'), 'url' => ['index']];
+$this->title = 'Convocatoria';
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Convocatorias'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
+    <!--<p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id_bases], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id_bases], [
             'class' => 'btn btn-danger',
@@ -24,12 +24,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-    </p>
+    </p>-->
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id_bases',
+            //'id_bases',
+            'bases_titulo',
             'convocatoria',
             'objetivo',
             'destinatarios',
@@ -38,18 +39,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'duracion',
             'fecha',
             'evaluacion',
-            'adjudicacion',
+            //'adjudicacion',
             'consulta',
-            'bases_titulo',
-            'ordenanza',
+            //'ordenanza',
             'tipo_convocatoria',
+            [
+                'attribute' => 'tipo_convocatoria',
+                'value' => 'tipoConvocatoria.descripcion',
+            ],
             'fecha_desde',
             'fecha_hasta',
-            'duracion_convocatoria',
-            'eje_tematico',
+            //'duracion_convocatoria',
+            //'eje_tematico',
             'eje_tematico_txt',
             'monto_max',
-            'tiene_monto:boolean',
+            //'tiene_monto:boolean',
         ],
     ]) ?>
 

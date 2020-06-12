@@ -7,6 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\IntegranteInternoPeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $model app\models\Pextension */
+/* @var $docemte app\models\Docente */
 
 $this->title = Yii::t('app', 'Integrante Interno Pes');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Proyectos'), 'url' => ['/pextension/index']];
@@ -28,29 +29,26 @@ $this->params['breadcrumbs'][] = $this->title;
     ])
     ?>
 
-    <?= GridView::widget([
+    <?=  GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id_designacion',
             [
-                'attribute' => 'id_designacion',
-                'value' => utf8_encode( 'desigancion')
+                'attribute' => 'docente',
+                'value' => 'designacion.docente.nombreCompleto',
             ],
-            //'id_pext',
-            'funcion_p',
-            //'carga_horaria',
+            [
+                'attribute' => 'funcion_p',
+                'value' => 'funcionP.descripcion',
+            ],
+            'tipo',
             'ua',
-            //'rescd',
-            //'ad_honorem',
-            //'tipo',
             'desde',
             'hasta',
-            //'cv',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

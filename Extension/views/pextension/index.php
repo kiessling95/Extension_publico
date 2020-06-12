@@ -56,7 +56,9 @@ $this->params['breadcrumbs'][] = $this->title;
             //'ord_priori',
             //'fec_carga',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{view}',
+                ],
         ],
     ]); ?>
 

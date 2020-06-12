@@ -31,18 +31,26 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_presupuesto',
-            'id_pext',
-            'id_rubro_extension',
+            //'id_presupuesto',
+            //'id_pext',
+            [
+                'attribute' => 'id_rubro_extension',
+                'value' => 'rubroExtension.tipo',
+            ],
             'concepto',
-            'cantidad',
-            //'monto',
+            [
+                'attribute' => 'monto',
+                'format'=>['decimal',2],
+            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            'cantidad',
+            
+
+            //['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

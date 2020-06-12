@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
+   <!--<p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id_presupuesto' => $model->id_presupuesto, 'id_pext' => $model->id_pext, 'id_rubro_extension' => $model->id_rubro_extension], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id_presupuesto' => $model->id_presupuesto, 'id_pext' => $model->id_pext, 'id_rubro_extension' => $model->id_rubro_extension], [
             'class' => 'btn btn-danger',
@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-    </p>
+    </p>-->
 
     <?= DetailView::widget([
         'model' => $model,

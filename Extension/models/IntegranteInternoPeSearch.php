@@ -11,6 +11,7 @@ use app\models\IntegranteInternoPe;
  */
 class IntegranteInternoPeSearch extends IntegranteInternoPe
 {
+    public $docente;
     /**
      * {@inheritdoc}
      */
@@ -18,7 +19,7 @@ class IntegranteInternoPeSearch extends IntegranteInternoPe
     {
         return [
             [['id_designacion', 'id_pext', 'carga_horaria', 'ad_honorem'], 'integer'],
-            [['funcion_p', 'ua', 'rescd', 'tipo', 'desde', 'hasta', 'cv'], 'safe'],
+            [['funcion_p', 'ua', 'rescd', 'tipo', 'desde', 'hasta', 'cv','docente'], 'safe'],
         ];
     }
 
@@ -70,8 +71,15 @@ class IntegranteInternoPeSearch extends IntegranteInternoPe
             ->andFilterWhere(['ilike', 'ua', $this->ua])
             ->andFilterWhere(['ilike', 'rescd', $this->rescd])
             ->andFilterWhere(['ilike', 'tipo', $this->tipo])
-            ->andFilterWhere(['ilike', 'cv', $this->cv]);
+            ->andFilterWhere(['ilike', 'cv', $this->cv])
+            ->andFilterWhere(['ilike','designacion.docente.nombre', $this->docente]);
 
         return $dataProvider;
+    }
+    
+    public function searchResumen($param) {
+        $query = IntegranteInternoPeSearch::find();
+        $resultado=$query->asArray()->all();
+        return $resultado;
     }
 }

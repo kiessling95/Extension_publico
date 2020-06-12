@@ -54,13 +54,13 @@ class Destinatarios extends \yii\db\ActiveRecord
             'id_destinatario' => Yii::t('app', 'Id Destinatario'),
             'domicilio' => Yii::t('app', 'Domicilio'),
             'telefono' => Yii::t('app', 'Telefono'),
-            'email' => Yii::t('app', 'Email'),
+            'email' => Yii::t('app', 'Correo'),
             'contacto' => Yii::t('app', 'Contacto'),
             'id_pext' => Yii::t('app', 'Id Pext'),
             'descripcion' => Yii::t('app', 'Descripcion'),
-            'id_localidad' => Yii::t('app', 'Id Localidad'),
-            'id_provincia' => Yii::t('app', 'Id Provincia'),
-            'id_pais' => Yii::t('app', 'Id Pais'),
+            'id_localidad' => Yii::t('app', 'Localidad'),
+            'id_provincia' => Yii::t('app', 'Provincia'),
+            'id_pais' => Yii::t('app', 'Pais'),
             'cantidad' => Yii::t('app', 'Cantidad'),
         ];
     }

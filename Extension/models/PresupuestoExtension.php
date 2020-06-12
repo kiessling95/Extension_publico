@@ -49,9 +49,9 @@ class PresupuestoExtension extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_presupuesto' => Yii::t('app', 'Id Presupuesto'),
+            'id_presupuesto' => Yii::t('app', 'Presupuesto'),
             'id_pext' => Yii::t('app', 'Id Pext'),
-            'id_rubro_extension' => Yii::t('app', 'Id Rubro Extension'),
+            'id_rubro_extension' => Yii::t('app', 'Rubro'),
             'concepto' => Yii::t('app', 'Concepto'),
             'cantidad' => Yii::t('app', 'Cantidad'),
             'monto' => Yii::t('app', 'Monto'),

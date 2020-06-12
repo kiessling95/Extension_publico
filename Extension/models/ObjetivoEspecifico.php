@@ -47,9 +47,9 @@ class ObjetivoEspecifico extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_objetivo' => Yii::t('app', 'Id Objetivo'),
+            'id_objetivo' => Yii::t('app', 'Objetivo'),
             'descripcion' => Yii::t('app', 'Descripcion'),
-            'id_pext' => Yii::t('app', 'Id Pext'),
+            'id_pext' => Yii::t('app', 'Proyecto'),
             'meta' => Yii::t('app', 'Meta'),
             'ponderacion' => Yii::t('app', 'Ponderacion'),
         ];

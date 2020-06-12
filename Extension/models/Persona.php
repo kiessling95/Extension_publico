@@ -97,4 +97,14 @@ class Persona extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Tipo::className(), ['nro_tabla' => 'nro_tabla', 'desc_abrev' => 'tipo_docum']);
     }
+    
+    public function getNombreCompleto()
+    {
+        return $this->nombre.' '. $this->apellido;
+    }
+    
+    public function getTipoNroDoc()
+    {
+        return $this->tipo_docum.' '. $this->nro_docum;
+    }
 }

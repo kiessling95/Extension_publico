@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\OrganizacionesParticipantes */
 
-$this->title = $model->id_organizacion;
+$this->title = $model->nombre;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Organizaciones Participantes'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
+    <!--<p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id_organizacion], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id_organizacion], [
             'class' => 'btn btn-danger',
@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-    </p>
+    </p>-->
 
     <?= DetailView::widget([
         'model' => $model,
@@ -33,14 +33,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'telefono',
             'email:email',
             'referencia_vinculacion_inst',
-            'id_pext',
             'id_tipo_organizacion',
             'id_organizacion',
             'id_localidad',
             'id_pais',
             'id_provincia',
             'domicilio',
-            'aval',
         ],
     ]) ?>
 

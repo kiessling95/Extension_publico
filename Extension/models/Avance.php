@@ -50,11 +50,11 @@ class Avance extends \yii\db\ActiveRecord
         return [
             'id_avance' => Yii::t('app', 'Id Avance'),
             'id_obj_esp' => Yii::t('app', 'Id Obj Esp'),
-            'fecha' => Yii::t('app', 'Fecha'),
-            'descripcion' => Yii::t('app', 'Descripcion'),
-            'link' => Yii::t('app', 'Link'),
+            'fecha' => Yii::t('app', 'Fecha Realización'),
+            'descripcion' => Yii::t('app', 'Descripción'),
+            'link' => Yii::t('app', 'Link Multimedia'),
             'titulo_actividad' => Yii::t('app', 'Titulo Actividad'),
-            'ponderacion' => Yii::t('app', 'Ponderacion'),
+            'ponderacion' => Yii::t('app', 'Ponderación'),
         ];
     }
 

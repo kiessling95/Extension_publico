@@ -48,14 +48,14 @@ class PlanActividades extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_plan' => Yii::t('app', 'Id Plan'),
+            'id_plan' => Yii::t('app', 'Plan'),
             'detalle' => Yii::t('app', 'Detalle'),
             'fecha' => Yii::t('app', 'Fecha'),
             'localizacion' => Yii::t('app', 'Localizacion'),
             'meta' => Yii::t('app', 'Meta'),
             'id_rubro_extension' => Yii::t('app', 'Id Rubro Extension'),
             'id_obj_especifico' => Yii::t('app', 'Id Obj Especifico'),
-            'anio' => Yii::t('app', 'Anio'),
+            'anio' => Yii::t('app', 'Año'),
             'destinatarios' => Yii::t('app', 'Destinatarios'),
         ];
     }

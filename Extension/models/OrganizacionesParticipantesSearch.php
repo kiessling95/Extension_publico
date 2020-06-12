@@ -75,4 +75,10 @@ class OrganizacionesParticipantesSearch extends OrganizacionesParticipantes
 
         return $dataProvider;
     }
+    
+    public function searchResumen($param) {
+        $query = OrganizacionesParticipantesSearch::find();
+        $resultado=$query->asArray()->all();
+        return $resultado;
+    }
 }

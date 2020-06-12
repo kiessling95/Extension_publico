@@ -34,7 +34,7 @@ $this->params["menu"] = [
         ],
         ['label' => 'Objetivos y Actividades',
             'icon' => 'fas fa-file-alt',
-            'url' => ['/objetivo-especifico/index?id='. $model->id_pext]
+            'url' => ['/objetivo-especifico/index?id=' . $model->id_pext]
         ],
         ['label' => 'Presupuesto',
             'icon' => 'fas fa-file-alt',

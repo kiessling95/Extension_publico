@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
+    <!--<p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'tipo_docum' => $model->tipo_docum, 'nro_docum' => $model->nro_docum, 'id_pext' => $model->id_pext, 'desde' => $model->desde], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'tipo_docum' => $model->tipo_docum, 'nro_docum' => $model->nro_docum, 'id_pext' => $model->id_pext, 'desde' => $model->desde], [
             'class' => 'btn btn-danger',
@@ -24,14 +24,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-    </p>
+    </p>-->
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'tipo_docum',
             'nro_docum',
-            'id_pext',
+            //'id_pext',
             'funcion_p',
             'carga_horaria',
             'desde',
@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'rescd',
             'ad_honorem',
             'tipo',
-            'cv',
+            //'cv',
         ],
     ]) ?>
 

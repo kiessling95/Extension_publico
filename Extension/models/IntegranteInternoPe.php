@@ -59,14 +59,14 @@ class IntegranteInternoPe extends \yii\db\ActiveRecord
         return [
             'id_designacion' => Yii::t('app', 'Id Designacion'),
             'id_pext' => Yii::t('app', 'Id Pext'),
-            'funcion_p' => Yii::t('app', 'Funcion dentro del Proyecto'),
+            'funcion_p' => Yii::t('app', 'Función'),
             'carga_horaria' => Yii::t('app', 'Carga Horaria'),
             'ua' => Yii::t('app', 'Unidad Academica'),
-            'rescd' => Yii::t('app', 'Resolusción cd'),
+            'rescd' => Yii::t('app', 'Resolución cd'),
             'ad_honorem' => Yii::t('app', 'Ad Honorem'),
-            'tipo' => Yii::t('app', 'Tipo'),
+            'tipo' => Yii::t('app', 'Claustro'),
             'desde' => Yii::t('app', 'Fecha inicio'),
-            'hasta' => Yii::t('app', 'fecha Fin'),
+            'hasta' => Yii::t('app', 'Fecha Fin'),
             'cv' => Yii::t('app', 'Cv'),
         ];
     }
@@ -89,5 +89,15 @@ class IntegranteInternoPe extends \yii\db\ActiveRecord
     public function getPext()
     {
         return $this->hasOne(Pextension::className(), ['id_pext' => 'id_pext']);
+    }
+    
+    /**
+     * Gets query for [[Designacion]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDesignacion()
+    {
+        return $this->hasOne(Designacion::className(), ['id_designacion' => 'id_designacion']);
     }
 }

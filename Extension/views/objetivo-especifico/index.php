@@ -30,17 +30,27 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        //'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id_objetivo',
+            //'id_objetivo',
             'descripcion',
-            'id_pext',
+            //'id_pext',
             'meta',
             'ponderacion',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{view}',
+                'buttons' => [
+                    'view' => function($url, $model) {
+                        return Html::a('<i class="fas fa-eye"></i>', '/plan-actividades/index?id=' . $model->id_objetivo, [
+                                    'title' => Yii::t('app', 'actividades')
+                        ]);
+                    },
+                ]
+            ],
         ],
     ]); ?>
 

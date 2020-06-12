@@ -5,6 +5,8 @@ use yii\widgets\ListView;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
+/* @var $searchModel app\models\PextensionSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $model app\models\Pextension */
 
 
@@ -17,16 +19,16 @@ $this->title = 'Proyectos de Extensión';
         <h1>Registro Proyectos de Extensión</h1>
         <row>
             <div class="col-md-3">
-                <h3><?= Html::a('<span class=" glyphicon glyphicon-map-marker"></span>' . count($total), ['registro/mapa'], ['class' => 'btn btn-success']) ?><br/> Proyectos</h3>
+                <h3><?= Html::a('<span class=" glyphicon glyphicon-cog"></span>' .$total['cantProy'], ['pextension/index'], ['class' => 'btn btn-success']) ?><br/> Proyectos</h3>
             </div>
             <div class="col-md-3">
-                <h3><?= Html::a('<span class="glyphicon glyphicon-tasks"> </span>' . 14, ['registro/resumen'], ['class' => 'btn btn-success']) ?> <br/> Integrantes</h3>
+                <h3><?= Html::a('<span class="glyphicon glyphicon-tasks"> </span>' . $total['cantInt'], ['pextension/index'], ['class' => 'btn btn-success']) ?> <br/> Integrantes</h3>
             </div>
             <div class="col-md-3">
-                <h3><?= Html::a('<span class="glyphicon glyphicon-cog"></span>' . 1, ['registro/resumen'], ['class' => 'btn btn-success']) ?> <br/> Convocatorias</h3>
+                <h3><?= Html::a('<span class="glyphicon glyphicon-earphone"></span>' . $total['cantConv'], ['convocatoria/index'], ['class' => 'btn btn-success']) ?> <br/> Convocatorias</h3>
             </div>
             <div class="col-md-3">
-                <h3><?= Html::a('<span class="glyphicon glyphicon-send"> </span>' . 152, ['entrega/resumen'], ['class' => 'btn btn-success']) ?><br/>  Beneficiados </h3>
+                <h3><?= Html::a('<span class="glyphicon glyphicon-globe"> </span>' . $total['cantBenef'], ['pextension/index'], ['class' => 'btn btn-success']) ?><br/>  Beneficiados </h3>
             </div>
         </row>
         <br/>
@@ -44,22 +46,58 @@ $this->title = 'Proyectos de Extensión';
             <h1>Listado Proyecto de Extensión </h1>
         </span>
         <!-- listview -->
-        <?=
-        GridView::widget([
-            'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
-            'columns' => [
-                ['class' => 'yii\grid\SerialColumn'],
-                'id_presupuesto',
-                'id_pext',
-                'id_rubro_extension',
-                'concepto',
-                'cantidad',
-                //'monto',
-                ['class' => 'yii\grid\ActionColumn'],
+     <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            //'id_pext',
+            [
+                'label' => 'convocatoria',
+                'value' => utf8_encode( 'bases.tipoConvocatoria.descripcion')
             ],
-        ]);
-        ?>
+            [
+                'attribute' => 'id_estado',
+                'value' => utf8_encode( 'estado.descripcion')
+            ],
+            'denominacion',
+            'uni_acad',
+            'fec_desde',
+            'fec_hasta',
+            //'expediente',
+            //'duracion',
+            //'palabras_clave',
+            //'objetivo',
+            //'id_estado',
+            //'financiacion:boolean',
+            //'monto',
+            //'descripcion_situacion',
+            //'caracterizacion_poblacion',
+            //'localizacion_geo',
+            //'antecedente_participacion',
+            //'importancia_necesidad',
+            //'id_bases',
+            //'responsable_carga',
+            //'departamento',
+            //'area',
+            //'impacto',
+            //'eje_tematico',
+            //'ord_priori',
+            //'fec_carga',
+
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{view}',
+                'buttons' => [
+                    'view' => function($url, $model) {
+                        return Html::a('<i class="fas fa-eye"></i>', '/pextension/index', [
+                                    'title' => Yii::t('app', 'actividades')
+                        ]);
+                    },
+                ]
+                ],
+        ],
+    ]); ?>
     </div>
     <div class="logos">
         <style>

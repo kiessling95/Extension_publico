@@ -74,4 +74,10 @@ class IntegranteExternoPeSearch extends IntegranteExternoPe
 
         return $dataProvider;
     }
+    
+    public function searchResumen($param) {
+        $query = IntegranteExternoPeSearch::find();
+        $resultado=$query->asArray()->all();
+        return $resultado;
+    }
 }

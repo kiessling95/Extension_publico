@@ -87,8 +87,8 @@ class BasesConvocatoria extends \yii\db\ActiveRecord
             'fecha_hasta' => Yii::t('app', 'Fecha Hasta'),
             'duracion_convocatoria' => Yii::t('app', 'Duracion Convocatoria'),
             'eje_tematico' => Yii::t('app', 'Eje Tematico'),
-            'eje_tematico_txt' => Yii::t('app', 'Eje Tematico Txt'),
-            'monto_max' => Yii::t('app', 'Monto Max'),
+            'eje_tematico_txt' => Yii::t('app', 'Eje Tematico'),
+            'monto_max' => Yii::t('app', 'Monto Maximo'),
             'tiene_monto' => Yii::t('app', 'Tiene Monto'),
         ];
     }

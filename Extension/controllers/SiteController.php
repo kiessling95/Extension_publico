@@ -10,13 +10,12 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 
-class SiteController extends Controller
-{
+class SiteController extends Controller {
+
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -41,8 +40,7 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function actions()
-    {
+    public function actions() {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -59,17 +57,32 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
+        $total = array();
         $searchModel = new \app\models\PextensionSearch();
-        $total = $searchModel ->searchResumen(null);
+        $integranteE = new \app\models\IntegranteExternoPeSearch();
+        $integranteI = new \app\models\IntegranteInternoPeSearch();
+        $conv = new \app\models\ConvocatoriaSearch();
+        $dest = new \app\models\DestinatariosSearch();
+        $org = new \app\models\OrganizacionesParticipantesSearch();
         
+        
+        $cantProy = count($searchModel->searchResumen(null));
+        $cantInt = count($integranteE->searchResumen(null))+ count($integranteI->searchResumen(null));
+        $cantConv = count($conv->searchResumen(null));
+        $cantBenef = count($dest->searchResumen(null))+ count($org->searchResumen(null));
+
+
+        $total['cantProy'] = $cantProy;
+        $total['cantInt'] = $cantInt;
+        $total['cantConv'] = $cantConv;
+        $total['cantBenef'] = $cantBenef;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index',[
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'total' => $total, 
+        return $this->render('index', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+                    'total' => $total,
         ]);
     }
 
@@ -78,8 +91,7 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionLogin()
-    {
+    public function actionLogin() {
         $this->layout = 'login';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
@@ -92,7 +104,7 @@ class SiteController extends Controller
 
         $model->password = '';
         return $this->render('login', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -101,8 +113,7 @@ class SiteController extends Controller
      *
      * @return Response
      */
-    public function actionLogout()
-    {
+    public function actionLogout() {
         Yii::$app->user->logout();
 
         return $this->goHome();
@@ -113,8 +124,7 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionContact()
-    {
+    public function actionContact() {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
@@ -122,7 +132,7 @@ class SiteController extends Controller
             return $this->refresh();
         }
         return $this->render('contact', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -131,8 +141,8 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionAbout()
-    {
+    public function actionAbout() {
         return $this->render('about');
     }
+
 }
