@@ -28,7 +28,7 @@ $this->title = 'Proyectos de Extensión';
                 <h3><?= Html::a('<span class="glyphicon glyphicon-earphone"></span>' . $total['cantConv'], ['convocatoria/index'], ['class' => 'btn btn-success']) ?> <br/> Convocatorias</h3>
             </div>
             <div class="col-md-3">
-                <h3><?= Html::a('<span class="glyphicon glyphicon-globe"> </span>' . $total['cantBenef'], ['pextension/index'], ['class' => 'btn btn-success']) ?><br/>  Beneficiados </h3>
+                <h3><?= Html::a('<span class="glyphicon glyphicon-globe"> </span>' . $total['cantBenef'], ['pextension/index'], ['class' => 'btn btn-success']) ?><br/>  Destinatarios </h3>
             </div>
         </row>
         <br/>
@@ -46,6 +46,15 @@ $this->title = 'Proyectos de Extensión';
             <h1>Listado Proyecto de Extensión </h1>
         </span>
         <!-- listview -->
+        
+        <?=
+        ListView::widget([
+        'dataProvider' => $dataProvider,
+        'itemOptions' => ['class' => 'item'],
+        'itemView' => function ($model, $key, $index, $widget) {
+            return Html::a(Html::encode($model->id_pext), ['/pextension/view', 'id' => $model->id_pext]);
+        },
+    ]) ?>
      <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

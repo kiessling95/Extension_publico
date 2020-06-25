@@ -14,8 +14,10 @@ use Yii;
  * @property string|null $link
  * @property string|null $titulo_actividad
  * @property int|null $ponderacion
+ * @property int $id_pext
  *
  * @property ObjetivoEspecifico $objEsp
+ * @property Pextension $pext
  */
 class Avance extends \yii\db\ActiveRecord
 {
@@ -33,12 +35,13 @@ class Avance extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_obj_esp'], 'required'],
-            [['id_obj_esp', 'ponderacion'], 'default', 'value' => null],
-            [['id_obj_esp', 'ponderacion'], 'integer'],
+            [['id_obj_esp', 'id_pext'], 'required'],
+            [['id_obj_esp', 'ponderacion', 'id_pext'], 'default', 'value' => null],
+            [['id_obj_esp', 'ponderacion', 'id_pext'], 'integer'],
             [['fecha'], 'safe'],
             [['descripcion', 'link', 'titulo_actividad'], 'string'],
             [['id_obj_esp'], 'exist', 'skipOnError' => true, 'targetClass' => ObjetivoEspecifico::className(), 'targetAttribute' => ['id_obj_esp' => 'id_objetivo']],
+            [['id_pext'], 'exist', 'skipOnError' => true, 'targetClass' => Pextension::className(), 'targetAttribute' => ['id_pext' => 'id_pext']],
         ];
     }
 
@@ -50,11 +53,12 @@ class Avance extends \yii\db\ActiveRecord
         return [
             'id_avance' => Yii::t('app', 'Id Avance'),
             'id_obj_esp' => Yii::t('app', 'Id Obj Esp'),
-            'fecha' => Yii::t('app', 'Fecha Realización'),
-            'descripcion' => Yii::t('app', 'Descripción'),
-            'link' => Yii::t('app', 'Link Multimedia'),
+            'fecha' => Yii::t('app', 'Fecha'),
+            'descripcion' => Yii::t('app', 'Descripcion'),
+            'link' => Yii::t('app', 'Link'),
             'titulo_actividad' => Yii::t('app', 'Titulo Actividad'),
-            'ponderacion' => Yii::t('app', 'Ponderación'),
+            'ponderacion' => Yii::t('app', 'Ponderacion'),
+            'id_pext' => Yii::t('app', 'Id Pext'),
         ];
     }
 
@@ -66,5 +70,15 @@ class Avance extends \yii\db\ActiveRecord
     public function getObjEsp()
     {
         return $this->hasOne(ObjetivoEspecifico::className(), ['id_objetivo' => 'id_obj_esp']);
+    }
+
+    /**
+     * Gets query for [[Pext]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPext()
+    {
+        return $this->hasOne(Pextension::className(), ['id_pext' => 'id_pext']);
     }
 }
