@@ -47,14 +47,14 @@ $this->title = 'Proyectos de Extensión';
         </span>
         <!-- listview -->
         
-        <?=
+        <!--<?=
         ListView::widget([
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'item'],
         'itemView' => function ($model, $key, $index, $widget) {
             return Html::a(Html::encode($model->id_pext), ['/pextension/view', 'id' => $model->id_pext]);
         },
-    ]) ?>
+    ]) ?>-->
      <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -63,7 +63,7 @@ $this->title = 'Proyectos de Extensión';
 
             //'id_pext',
             [
-                'label' => 'convocatoria',
+                'attribute' => 'convocatoria',
                 'value' => utf8_encode( 'bases.tipoConvocatoria.descripcion')
             ],
             [

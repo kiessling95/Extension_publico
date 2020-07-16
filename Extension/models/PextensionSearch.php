@@ -87,8 +87,8 @@ class PextensionSearch extends Pextension
             ->andFilterWhere(['ilike', 'responsable_carga', $this->responsable_carga])
             ->andFilterWhere(['ilike', 'departamento', $this->departamento])
             ->andFilterWhere(['ilike', 'area', $this->area])
-            ->andFilterWhere(['ilike', 'impacto', $this->impacto]);
-            //->andFilterWhere(['ilike', 'bases', $this->convocatoria]);
+            ->andFilterWhere(['ilike', 'impacto', $this->impacto])
+            ->andFilterWhere(['ilike', 'bases.tipoConvocatoria.descripcion', $this->convocatoria]);
 
         return $dataProvider;
     }

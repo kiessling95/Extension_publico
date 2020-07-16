@@ -4,15 +4,15 @@ namespace app\controllers;
 
 use Yii;
 use app\models\BasesConvocatoria;
-use app\models\ConvocatoriaSearch;
+use app\models\BasesConvocatoriaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ConvocatoriaController implements the CRUD actions for BasesConvocatoria model.
+ * BasesConvocatoriaController implements the CRUD actions for BasesConvocatoria model.
  */
-class ConvocatoriaController extends Controller
+class BasesConvocatoriaController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -35,7 +35,7 @@ class ConvocatoriaController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ConvocatoriaSearch();
+        $searchModel = new BasesConvocatoriaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

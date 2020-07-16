@@ -45,6 +45,10 @@ $this->params["menu"] = [
             'icon' => 'fas fa-file-alt',
             'url' => ['/avance/index?id=' . $model->id_pext]
         ],
+        ['label' => 'Solicitudes',
+            'icon' => 'fas fa-file-alt',
+            'url' => ['/solicitud/index?id=' . $model->id_pext]
+        ],
     ]
 ];
 

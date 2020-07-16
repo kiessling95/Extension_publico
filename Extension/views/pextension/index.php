@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id_pext',
             [
-                'attribute' => 'id_bases',
+                'attribute' => 'convocatoria',
                 'value' => utf8_encode( 'bases.bases_titulo')
             ],
             'denominacion',

@@ -23,7 +23,7 @@ use yii\helpers\Html;
                     <a href="/" class="nav-link">Inicio</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/convocatoria/index" class="nav-link">Convocatoria</a>
+                    <a href="/bases-convocatoria/index" class="nav-link">Convocatoria</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="/pextension/index" class="nav-link">Proyectos</a>

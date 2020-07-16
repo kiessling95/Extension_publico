@@ -16,6 +16,7 @@ use Yii;
  * @property string|null $fecha_recepcion
  * @property string|null $nro_acta
  * @property string|null $obs_resolucion
+ * @property string|null $fecha_fin_prorroga
  *
  * @property Pextension $pext
  */
@@ -39,7 +40,7 @@ class Solicitud extends \yii\db\ActiveRecord
             [['id_pext', 'recibido'], 'default', 'value' => null],
             [['id_pext', 'recibido'], 'integer'],
             [['tipo_solicitud', 'motivo', 'estado_solicitud', 'nro_acta', 'obs_resolucion'], 'string'],
-            [['fecha_solicitud', 'fecha_recepcion'], 'safe'],
+            [['fecha_solicitud', 'fecha_recepcion', 'fecha_fin_prorroga'], 'safe'],
             [['id_pext', 'tipo_solicitud', 'fecha_solicitud'], 'unique', 'targetAttribute' => ['id_pext', 'tipo_solicitud', 'fecha_solicitud']],
             [['id_pext'], 'exist', 'skipOnError' => true, 'targetClass' => Pextension::className(), 'targetAttribute' => ['id_pext' => 'id_pext']],
         ];
@@ -60,6 +61,7 @@ class Solicitud extends \yii\db\ActiveRecord
             'fecha_recepcion' => Yii::t('app', 'Fecha Recepcion'),
             'nro_acta' => Yii::t('app', 'Nro Acta'),
             'obs_resolucion' => Yii::t('app', 'Obs Resolucion'),
+            'fecha_fin_prorroga' => Yii::t('app', 'Fecha Fin Prorroga'),
         ];
     }
 
