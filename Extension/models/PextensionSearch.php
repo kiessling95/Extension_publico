@@ -43,7 +43,9 @@ class PextensionSearch extends Pextension
      */
     public function search($params)
     {
-        $query = Pextension::find();
+        $query = Pextension::find()
+                ->joinWith("bases");
+        
 
         // add conditions that should always apply here
 
@@ -88,7 +90,7 @@ class PextensionSearch extends Pextension
             ->andFilterWhere(['ilike', 'departamento', $this->departamento])
             ->andFilterWhere(['ilike', 'area', $this->area])
             ->andFilterWhere(['ilike', 'impacto', $this->impacto])
-            ->andFilterWhere(['ilike', 'bases.tipoConvocatoria.descripcion', $this->convocatoria]);
+            ->andFilterWhere(['ilike', 'bases_convocatoria.bases_titulo', $this->convocatoria]);
 
         return $dataProvider;
     }

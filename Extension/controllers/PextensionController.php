@@ -37,10 +37,15 @@ class PextensionController extends Controller
     {
         $searchModel = new PextensionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        if (($proyectos = \app\models\Pextension::find()->asArray()->all()) == null) {
+            throw new NotFoundHttpException(Yii::t('app', 'No hay proyectos.'));
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'proyectos' => $proyectos,
         ]);
     }
 

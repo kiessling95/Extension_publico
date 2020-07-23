@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\data\Pagination;
 
 class SiteController extends Controller {
 
@@ -65,12 +66,12 @@ class SiteController extends Controller {
         $conv = new \app\models\ConvocatoriaSearch();
         $dest = new \app\models\DestinatariosSearch();
         $org = new \app\models\OrganizacionesParticipantesSearch();
-        
-        
+
+
         $cantProy = count($searchModel->searchResumen(null));
-        $cantInt = count($integranteE->searchResumen(null))+ count($integranteI->searchResumen(null));
+        $cantInt = count($integranteE->searchResumen(null)) + count($integranteI->searchResumen(null));
         $cantConv = count($conv->searchResumen(null));
-        $cantBenef = count($dest->searchResumen(null))+ count($org->searchResumen(null));
+        $cantBenef = count($dest->searchResumen(null)) + count($org->searchResumen(null));
 
 
         $total['cantProy'] = $cantProy;
@@ -79,10 +80,25 @@ class SiteController extends Controller {
         $total['cantBenef'] = $cantBenef;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        if (($proyectos = \app\models\Pextension::find()) == null) {
+            throw new NotFoundHttpException(Yii::t('app', 'No hay proyectos.'));
+        }
+
+        //Paginación para 6 eventos por pagina
+
+        $pages = new Pagination(['totalCount' => count($proyectos->asArray()->all())]);
+        $pages->pageSize = 6;
+
+        $models = $proyectos->offset($pages->offset)
+                ->limit($pages->limit)
+                ->all();
+
         return $this->render('index', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
                     'total' => $total,
+                    'proyectos' => $models,
+                    'pages' => $pages,
         ]);
     }
 
