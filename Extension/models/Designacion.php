@@ -292,7 +292,7 @@ class Designacion extends \yii\db\ActiveRecord
     /**
      * Gets query for [[Docente]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return Docente
      */
     public function getDocente()
     {

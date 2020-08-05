@@ -2,15 +2,23 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Pextension */
+if(!isset($url)){
+    $url = substr(Url::to(),0,strpos(Url::to(), '?'));
+}
 
 $this->params["menu"] = [
     'label' => 'Proyectos',
     'icon' => 'fas fa-folder-open',
-    'url' => ['/pextension/view'],
+    'url' => [$url],
     'items' => [
+        ['label' => 'Datos Principales',
+            'icon' => 'fas fa-file-alt',
+            'url' => ['/pextension/view/'. $model->id_pext]
+        ],
         ['label' => 'Integrantes',
             'icon' => 'fas fa-folder-open',
             'items' => [

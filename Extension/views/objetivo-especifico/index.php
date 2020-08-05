@@ -41,16 +41,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'ponderacion',
 
             //['class' => 'yii\grid\ActionColumn'],
-            ['class' => 'yii\grid\ActionColumn',
-                'template' => '{view}',
-                'buttons' => [
-                    'view' => function($url, $model) {
-                        return Html::a('<i class="fas fa-eye"></i>', '/plan-actividades/index?id=' . $model->id_objetivo, [
+            
+            [
+                'attribute' => 'Mas información',
+                'format' => 'raw',
+                'value' => function ($dataProvider) {
+
+                    return Html::a('<i class="fas fa-eye"></i>', '/plan-actividades/index?id=' . $dataProvider->id_objetivo, [
                                     'title' => Yii::t('app', 'actividades')
                         ]);
-                    },
-                ]
+                },
+                'headerOptions' => ['style' => 'text-align:center;'],
+                'contentOptions' => ['style' => 'text-align:center; vertical-align:middle;'],
             ],
+        
         ],
     ]); ?>
 

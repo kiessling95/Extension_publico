@@ -21,6 +21,7 @@ use Yii;
  *
  * @property FuncionExtension $funcionP
  * @property Pextension $pext
+ * @property Designacion $designacion
  */
 class IntegranteInternoPe extends \yii\db\ActiveRecord
 {

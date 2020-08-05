@@ -45,21 +45,19 @@ use Yii;
  * @property SeguimientoUa[] $seguimientoUas
  * @property Solicitud[] $solicituds
  */
-class Pextension extends \yii\db\ActiveRecord
-{
+class Pextension extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'pextension';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['denominacion', 'objetivo', 'departamento', 'area', 'impacto'], 'string'],
             [['fec_desde', 'fec_hasta', 'fec_carga'], 'safe'],
@@ -83,8 +81,7 @@ class Pextension extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id_pext' => Yii::t('app', 'Id Pext'),
             'denominacion' => Yii::t('app', 'Denominacion'),
@@ -109,7 +106,7 @@ class Pextension extends \yii\db\ActiveRecord
             'area' => Yii::t('app', 'Area'),
             'impacto' => Yii::t('app', 'Impacto'),
             'eje_tematico' => Yii::t('app', 'Eje Tematico'),
-            'ord_priori' => Yii::t('app', 'Ord Priori'),
+            'ord_priori' => Yii::t('app', 'Orden de Prioridad'),
             'fec_carga' => Yii::t('app', 'Fec Carga'),
         ];
     }
@@ -119,8 +116,7 @@ class Pextension extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getDestinatarios()
-    {
+    public function getDestinatarios() {
         return $this->hasMany(Destinatarios::className(), ['id_pext' => 'id_pext']);
     }
 
@@ -129,8 +125,7 @@ class Pextension extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getIntegranteExternoPes()
-    {
+    public function getIntegranteExternoPes() {
         return $this->hasMany(IntegranteExternoPe::className(), ['id_pext' => 'id_pext']);
     }
 
@@ -139,8 +134,7 @@ class Pextension extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getIntegranteInternoPes()
-    {
+    public function getIntegranteInternoPes() {
         return $this->hasMany(IntegranteInternoPe::className(), ['id_pext' => 'id_pext']);
     }
 
@@ -149,8 +143,7 @@ class Pextension extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getObjetivoEspecificos()
-    {
+    public function getObjetivoEspecificos() {
         return $this->hasMany(ObjetivoEspecifico::className(), ['id_pext' => 'id_pext']);
     }
 
@@ -159,8 +152,7 @@ class Pextension extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getOrganizacionesParticipantes()
-    {
+    public function getOrganizacionesParticipantes() {
         return $this->hasMany(OrganizacionesParticipantes::className(), ['id_pext' => 'id_pext']);
     }
 
@@ -169,8 +161,7 @@ class Pextension extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getBases()
-    {
+    public function getBases() {
         return $this->hasOne(BasesConvocatoria::className(), ['id_bases' => 'id_bases']);
     }
 
@@ -179,8 +170,7 @@ class Pextension extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getEstado()
-    {
+    public function getEstado() {
         return $this->hasOne(EstadoPe::className(), ['id_estado' => 'id_estado']);
     }
 
@@ -189,8 +179,7 @@ class Pextension extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getPresupuestoExtensions()
-    {
+    public function getPresupuestoExtensions() {
         return $this->hasMany(PresupuestoExtension::className(), ['id_pext' => 'id_pext']);
     }
 
@@ -199,8 +188,7 @@ class Pextension extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getSeguimientoCentrals()
-    {
+    public function getSeguimientoCentrals() {
         return $this->hasMany(SeguimientoCentral::className(), ['id_pext' => 'id_pext']);
     }
 
@@ -209,8 +197,7 @@ class Pextension extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getSeguimientoUas()
-    {
+    public function getSeguimientoUas() {
         return $this->hasMany(SeguimientoUa::className(), ['id_pext' => 'id_pext']);
     }
 
@@ -219,9 +206,32 @@ class Pextension extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getSolicituds()
-    {
+    public function getSolicituds() {
         return $this->hasMany(Solicitud::className(), ['id_pext' => 'id_pext']);
     }
+
+    public function getAreaUa() {
+        return $this->hasOne(Area::className(), ['idarea' => 'area']);
+    }
+
+    public function getDepartamentoUa() {
+        return $this->hasOne(Departamento::className(), ['iddepto' => 'departamento']);
+    }
+
+    public function getUa() {
+        return $this->hasOne(UnidadAcad::className(), ['sigla' => 'uni_acad']);
+    }
     
+    public function getDirector() {
+        
+        $integrantesInt = $this->hasMany(IntegranteInternoPe::className(), ['id_pext' => 'id_pext'])->andOnCondition("funcion_p='D'")->orderBy('hasta');
+        /* @var $integrante IntegranteInternoPe */ 
+        $integrante = $integrantesInt->one();
+        if($integrante != null){ 
+            return $integrante->designacion->docente->nombre.' '.$integrante->designacion->docente->apellido;
+        } else {
+            return null;
+        }
+
+    }
 }

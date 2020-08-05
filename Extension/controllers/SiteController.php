@@ -80,18 +80,30 @@ class SiteController extends Controller {
         $total['cantBenef'] = $cantBenef;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        if (($proyectos = \app\models\Pextension::find()) == null) {
-            throw new NotFoundHttpException(Yii::t('app', 'No hay proyectos.'));
+
+        $request = Yii::$app->request;
+        $busqueda = $request->get("s", "");
+
+        if ($busqueda != "") {
+            $proyectos = \app\models\Pextension::find()
+                    ->andwhere(["like", "denominacion", $busqueda]);
+        } else {
+            if (($proyectos = \app\models\Pextension::find()) == null) {
+                throw new NotFoundHttpException(Yii::t('app', 'No hay proyectos.'));
+            }
         }
 
         //Paginación para 6 eventos por pagina
 
         $pages = new Pagination(['totalCount' => count($proyectos->asArray()->all())]);
         $pages->pageSize = 6;
-
+        
+        
         $models = $proyectos->offset($pages->offset)
                 ->limit($pages->limit)
                 ->all();
+
+        
 
         return $this->render('index', [
                     'searchModel' => $searchModel,

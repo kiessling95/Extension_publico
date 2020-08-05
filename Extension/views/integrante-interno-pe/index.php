@@ -15,13 +15,11 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', $model ->denominacion
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="integrante-interno-pe-index">
+    <div class="body-content">
+        
+    </div>
 
     <h1><?= Html::encode($this->title) ?></h1>
-<!--
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Integrante Interno Pe'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>-->
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     
     <?=
     $this->render('/pextension/menu', [

@@ -60,8 +60,13 @@ class SolicitudController extends Controller
      */
     public function actionView($id_pext, $tipo_solicitud, $fecha_solicitud)
     {
+        if (($proyecto = \app\models\Pextension::findOne($id_pext)) == null) {
+            throw new NotFoundHttpException(Yii::t('app', 'El Proyecto no existe.'));
+        }
+        
         return $this->render('view', [
-            'model' => $this->findModel($id_pext, $tipo_solicitud, $fecha_solicitud),
+            'solicitud' => $this->findModel($id_pext, $tipo_solicitud, $fecha_solicitud),
+            'model' => $proyecto,
         ]);
     }
 

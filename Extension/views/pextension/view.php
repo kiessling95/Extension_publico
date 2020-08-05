@@ -28,10 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
     ])
     ?>
         </p> -->
-
     <?=
     $this->render('menu', [
         'model' => $model,
+        'url' => '/pextension/view',
     ])
     ?>
 
@@ -46,12 +46,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->estado->descripcion,
             ],
             [
+                'label' => 'Director',
+                'value' => $model->getDirector(),
+            ],
+            [
                 'label' => 'Convocatoria',
                 'value' => $model->bases->bases_titulo,
             ],
-            'uni_acad',
-            'departamento',
-            'area',
+            [
+                'label' => 'Unidad Academica',
+                'value' => $model->ua->descripcion,
+            ],
+            [
+                'label' => 'Departamento',
+                'value' => $model->departamentoUa->descripcion,
+            ],
+            [
+                'label' => 'Area',
+                'value' => $model->areaUa->descripcion,
+            ],
+
             'fec_carga',
             'fec_desde',
             'fec_hasta',
@@ -66,10 +80,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'monto',
             'ord_priori',
             'responsable_carga',
-            //'expediente',
-            //'financiacion:boolean',
-            //'antecedente_participacion',
-            //'importancia_necesidad',
+        //'expediente',
+        //'financiacion:boolean',
+        //'antecedente_participacion',
+        //'importancia_necesidad',
         ],
     ])
     ?>
