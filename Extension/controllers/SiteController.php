@@ -81,29 +81,105 @@ class SiteController extends Controller {
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
 
+        // SEARCH nombre proyecto
         $request = Yii::$app->request;
-        $busqueda = $request->get("s", "");
+        $busqueda = strtolower($request->get("s", ""));
+        /*
+         * 0 -> titulo proyecto
+         * 1 -> Facultad
+         * 2 -> Director
+         */
+        $tipo = $request->get("tipo", "");
 
-        if ($busqueda != "") {
-            $proyectos = \app\models\Pextension::find()
-                    ->andwhere(["like", "denominacion", $busqueda]);
-        } else {
-            if (($proyectos = \app\models\Pextension::find()) == null) {
-                throw new NotFoundHttpException(Yii::t('app', 'No hay proyectos.'));
-            }
+
+        switch ($tipo) {
+            case 1:
+                break;
+            case 2:
+                if ($busqueda != "") {
+
+                    /*
+                      ->innerJoin('designacion', 'designacion.id_docente=docente.id_docente')
+                      ->innerJoin('integrante_interno_pe', 'integrante_interno_pe.id_designacion=designacion.id_designacion')
+                      ->innerJoin('funcion_extension', 'funcion_extension.id_extension=integrante_interno_pe.funcion_p')
+                      ->innerJoin('pextension', 'pextension.id_pext=integrante_interno_pe.id_pext')
+                      ->andwhere(["like", "funcion_extension.descripcion", "Director"]) */
+
+                    $designaciones = \app\models\Designacion::find()
+                            ->innerJoin('docente', 'designacion.id_docente=docente.id_docente')
+                            ->andwhere(["like", "LOWER(docente.apellido)", $busqueda]);
+
+                    $directores = \app\models\IntegranteInternoPe::find()
+                            ->andwhere(["like", "funcion_p", "D"]);
+
+                    $directores = $directores->asArray()->all();
+                    $designaciones = $designaciones->asArray()->all();
+
+                    $proyectos = array();
+                    $aux = 0;
+
+                    foreach ($directores as $director) {
+                        foreach ($designaciones as $designacion) {
+                            if ($director['id_designacion'] == $designacion['id_designacion']) {
+
+                                $proyectos[$aux] = \app\models\Pextension::find()
+                                                ->andwhere(["=", "id_pext", $director['id_pext']])->asArray()->all()[0];
+                                $aux = $aux + 1;
+                            }
+                        }
+                    }
+                    $pages = new Pagination(['totalCount' => count($proyectos)]);
+                    $pages->pageSize = 6;
+
+
+                    $models = $proyectos;
+                } else {
+
+                    if (($proyectos = \app\models\Pextension::find()) == null) {
+                        throw new NotFoundHttpException(Yii::t('app', 'No hay proyectos.'));
+                    }
+
+                    $pages = new Pagination(['totalCount' => count($proyectos->asArray()->all())]);
+                    $pages->pageSize = 6;
+
+
+                    $models = $proyectos->offset($pages->offset)
+                            ->limit($pages->limit)
+                            ->all();
+                }
+
+                break;
+            default :
+                if ($busqueda != "") {
+                    $proyectos = \app\models\Pextension::find()
+                            ->andwhere(["like", "LOWER(denominacion)", $busqueda]);
+
+                    $pages = new Pagination(['totalCount' => count($proyectos->asArray()->all())]);
+                    $pages->pageSize = 6;
+
+
+                    $models = $proyectos->offset($pages->offset)
+                            ->limit($pages->limit)
+                            ->all();
+                } else {
+                    if (($proyectos = \app\models\Pextension::find()) == null) {
+                        throw new NotFoundHttpException(Yii::t('app', 'No hay proyectos.'));
+                    }
+                }
+                $pages = new Pagination(['totalCount' => count($proyectos->asArray()->all())]);
+                $pages->pageSize = 6;
+
+
+                $models = $proyectos->offset($pages->offset)
+                        ->limit($pages->limit)
+                        ->all();
+                break;
         }
+
 
         //Paginación para 6 eventos por pagina
 
-        $pages = new Pagination(['totalCount' => count($proyectos->asArray()->all())]);
-        $pages->pageSize = 6;
-        
-        
-        $models = $proyectos->offset($pages->offset)
-                ->limit($pages->limit)
-                ->all();
 
-        
 
         return $this->render('index', [
                     'searchModel' => $searchModel,

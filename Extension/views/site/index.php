@@ -49,35 +49,35 @@ $this->title = 'Proyectos de Extensión';
         <h1>Listado Proyecto de Extensión </h1>
     </span>
 
-    <section class="darkish_bg" id="events">
-        <div class="container padding_select">
-            <form action="#events">
-                <div class="form-group row">
-                    <div class="col-sm-12 col-md-4 mb-3">
-                        <select name="orden" class="custom-select custom-select-lg" onchange="this.form.submit()">
-                            <option <?= (isset($_GET["orden"]) && $_GET["orden"] == 0) ? "selected" : "" ?>
-                                value="0">Titulo Proyecto
-                            </option>
-                            <option <?= (isset($_GET["orden"]) && $_GET["orden"] == 1) ? "selected" : "" ?>
-                                value="1">Facultad 
-                            </option>
-                        </select>
-                    </div>
 
-                    <div class="col-sm-12 col-md-4 mb-3">
-                        <input class="form-control-lg full_width" type="search" placeholder="Buscar" name="s"
-                               value="<?= isset($_GET["s"]) ? $_GET["s"] : "" ?>">
-                    </div>
+    <section class="dark_bg">
+        <form class="form">
+            <div class="sidebar">
+                <select name="tipo" onchange="this.form.submit()">
+                    <option <?= (isset($_GET["tipo"]) && $_GET["tipo"] == 0) ? "selected" : "" ?>
+                        value="0">Titulo Proyecto
+                    </option>
+                    <option <?= (isset($_GET["tipo"]) && $_GET["tipo"] == 1) ? "selected" : "" ?>
+                        value="1">Facultad 
+                    </option>
+                    <option <?= (isset($_GET["tipo"]) && $_GET["tipo"] == 2) ? "selected" : "" ?>
+                        value="2">Director 
+                    </option>
+                </select>
+            </div>
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Buscar" name="s"
+                       value="<?= isset($_GET["s"]) ? $_GET["s"] : "" ?>">
+                <span class="input-group-btn">
+                    <button type='submit' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i>
+                    </button>
+                     <?= Html::a('Restablecer', ["index#events"], ['class' => 'btn btn-secondary btn-lg full_width']); ?>
+                </span>
 
-                    <div class="col-sm-12 col-md-2 mb-3">
-                        <button class="btn btn-outline-success btn-lg full_width" type="submit">Buscar</button>
-                        <?= Html::a('Restablecer', ["index#events"], ['class' => 'btn btn-secondary btn-lg full_width']); ?>
-                    </div>
-
-                </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </section>
+
 
     <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -85,7 +85,7 @@ $this->title = 'Proyectos de Extensión';
         <div class="container padding_section">
             <?php if (count($proyectos) != 0) : ?>
                 <div class="row">
-                    <?php foreach ($proyectos as $proyecto) : ?>
+                    <?php foreach ($proyectos as $proyecto) :?>
 
                         <div class="col-sm-12 col-md-4 mb-5">
                             <div class='card'>
@@ -93,7 +93,7 @@ $this->title = 'Proyectos de Extensión';
                                     <?= Html::a(Html::img(Url::base('') . '/' . Html::encode('img/extension.png'), ["class" => "card-img-top"]), ['/pextension/view', 'id' => $proyecto['id_pext']]) ?>
                                     <div class='card-body'>
                                         <h4 class='card-title'><?= Html::encode($proyecto["denominacion"]) ?></h4>
-                                        <h5 class='card-title'><?= Html::encode("Director/a: ". app\models\Pextension::find()->where(["id_pext"=>$proyecto['id_pext']])->one()->getDirector()) ?></h5>
+                                        <h5 class='card-title'><?= Html::encode("Director/a: " . app\models\Pextension::find()->where(["id_pext" => $proyecto['id_pext']])->one()->getDirector()) ?></h5>
                                         <h5 class='card-title'><?= Html::encode("Facultad : " . $proyecto["uni_acad"]) ?></h5>
                                         <h5 class='card-title'><?= Html::encode("Fecha Fin : " . date('d/m/Y', strtotime($proyecto["fec_hasta"]))) ?></h5>
                                         <p class='card-text'><?= Html::encode($proyecto["localizacion_geo"]) ?></p>
